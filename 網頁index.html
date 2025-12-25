@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>台灣人工智慧發展學會（TIAI）</title>
+  <meta name="description" content="台灣人工智慧發展學會（TIAI）— 推動人工智慧教育與產業交流。" />
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#121a33;
+      --text:#e9eeff;
+      --muted:#a9b3d6;
+      --line:rgba(255,255,255,.10);
+      --accent:#7c5cff;
+      --accent2:#2ee59d;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(124,92,255,.35), transparent 60%),
+        radial-gradient(900px 520px at 90% 10%, rgba(46,229,157,.22), transparent 55%),
+        linear-gradient(180deg, var(--bg), #070a14 70%);
+      color:var(--text);
+    }
+    a{color:inherit}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    header{
+      position:sticky;top:0;z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(7,10,20,.55);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      max-width:1100px;margin:0 auto;padding:14px 24px;
+    }
+    .brand{
+      display:flex;gap:10px;align-items:center;font-weight:800;letter-spacing:.4px;
+    }
+    .dot{
+      width:14px;height:14px;border-radius:50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 6px rgba(124,92,255,.12);
+    }
+    .nav a{opacity:.9;text-decoration:none}
+    .menu{display:flex;gap:16px;align-items:center}
+    .menu a{padding:8px 10px;border-radius:12px;}
+    .menu a:hover{background:rgba(255,255,255,.06)}
+    .hero{
+      display:grid;grid-template-columns: 1.2fr .8fr;gap:18px;
+      padding:34px 0 12px;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero .left{padding:26px}
+    .kicker{
+      display:inline-flex;gap:8px;align-items:center;
+      padding:8px 12px;border-radius:999px;
+      background: rgba(124,92,255,.12);
+      border:1px solid rgba(124,92,255,.25);
+      color: var(--text);
+      font-size: 13px;
+    }
+    h1{margin:14px 0 10px;font-size: 36px;line-height:1.18}
+    .sub{color:var(--muted);line-height:1.7;font-size: 15.5px;max-width: 58ch}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:12px 14px;border-radius:14px;border:1px solid var(--line);
+      text-decoration:none;background: rgba(255,255,255,.06);
+    }
+    .btn.primary{
+      border-color: rgba(46,229,157,.35);
+      background: linear-gradient(135deg, rgba(46,229,157,.18), rgba(124,92,255,.18));
+    }
+    .right{padding:18px;display:flex;flex-direction:column;gap:10px}
+    .mini{
+      padding:14px;border-radius:16px;border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+    }
+    .mini .t{font-weight:800;margin:0 0 6px}
+    .mini .d{color:var(--muted);margin:0;font-size:14px;line-height:1.6}
+    section{padding:18px 0}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+    .section-title{font-size:18px;margin:0 0 10px}
+    .p{color:var(--muted);line-height:1.8;margin:0}
+    .list{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+    .li{
+      padding:12px 12px;border-radius:14px;border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+    }
+    .li b{display:block;margin-bottom:4px}
+    .fbbox{padding:14px}
+    footer{
+      border-top:1px solid var(--line);
+      margin-top:18px;
+      padding:18px 0 26px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      h1{font-size:30px}
+      .menu{display:none}
+    }
+
+    /* ✅ 右上角「貼文」按鈕 + 彈出視窗 */
+    .nav-right{display:flex;align-items:center;gap:10px;}
+    .post-btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(233,238,255,.92);
+      cursor:pointer;user-select:none;
+      font-weight:700;font-size:14px;line-height:1;
+    }
+    .post-btn:hover{background: rgba(255,255,255,.10)}
+    .post-btn .dotmini{
+      width:8px;height:8px;border-radius:50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(124,92,255,.12);
+    }
+
+    .post-overlay{
+      position:fixed;inset:0;z-index:9999;
+      display:none;background: rgba(0,0,0,.62);
+      backdrop-filter: blur(6px);
+    }
+    .post-overlay.active{display:block}
+
+    .post-modal{
+      position:absolute;top:50%;left:50%;
+      transform: translate(-50%, -50%);
+      width: min(920px, 92vw);
+      height: min(680px, 86vh);
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(11,16,32,.98);
+      box-shadow: 0 30px 80px rgba(0,0,0,.55);
+      overflow:hidden;display:flex;flex-direction:column;
+    }
+    .post-modal-head{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .post-modal-title{margin:0;font-size:15px;font-weight:900;letter-spacing:.3px;}
+    .post-close{
+      width:40px;height:40px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:#fff;cursor:pointer;display:flex;
+      align-items:center;justify-content:center;
+      user-select:none;font-size:18px;
+    }
+    .post-close:hover{background: rgba(255,255,255,.10)}
+    .post-modal-body{padding:14px;overflow:auto;}
+    .hint{margin:0 0 12px;color: rgba(233,238,255,.70);font-size: 12.5px;line-height:1.6;}
+    .embed-wrap{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;padding:12px;
+      background: rgba(255,255,255,.03);
+    }
+
+    /* ✅ iframe 視覺 */
+    .fb-iframe{
+      width:100%;
+      border:none;
+      overflow:hidden;
+      border-radius:14px;
+      background:#fff; /* FB 內容底色 */
+    }
+    .iframe-sep{height:14px}
+    .fb-fallback{
+      margin-top:10px;
+      font-size:13px;
+      color: rgba(233,238,255,.75);
+    }
+    .fb-fallback a{opacity:.95}
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <span class="dot"></span>
+        <a href="#top">台灣人工智慧發展學會（TIAI）</a>
+      </div>
+
+      <div class="nav-right">
+        <nav class="menu" aria-label="導覽">
+          <a href="#about">關於學會</a>
+          <a href="#news">最新動態</a>
+          <a href="#contact">聯絡方式</a>
+        </nav>
+
+        <button class="post-btn" type="button" onclick="openPost()">
+          <span class="dotmini"></span> 貼文
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <div class="hero">
+      <div class="card left">
+        <div class="kicker">Science · Technology · Engineering</div>
+        <h1>推動 AI 教育與產業交流<br/>打造跨域合作的學習平台</h1>
+        <p class="sub">
+          這是一個以粉專內容為核心的簡易官網頁面：你可以用它當「官方入口」，
+          把學會簡介、聯絡資訊與 Facebook 最新貼文整合在同一頁。
+        </p>
+
+        <div class="cta">
+          <a class="btn primary" href="https://www.facebook.com/tiai201810/" target="_blank" rel="noopener">
+            前往 Facebook 粉專
+          </a>
+          <a class="btn" href="https://www.tiai.org.tw" target="_blank" rel="noopener">
+            前往官網（tiai.org.tw）
+          </a>
+          <a class="btn" href="#news">看最新動態</a>
+        </div>
+      </div>
+
+      <aside class="card right">
+        <div class="mini">
+          <p class="t">📍 地址</p>
+          <p class="d">新莊區中正路510號 輔仁大學羅耀拉大樓403室（新北市）</p>
+        </div>
+        <div class="mini">
+          <p class="t">✉️ 信箱</p>
+          <p class="d"><a href="mailto:tiai201810@gmail.com">tiai201810@gmail.com</a></p>
+        </div>
+        <div class="mini">
+          <p class="t">🌐 官網</p>
+          <p class="d"><a href="https://www.tiai.org.tw" target="_blank" rel="noopener">www.tiai.org.tw</a></p>
+        </div>
+      </aside>
+    </div>
+
+    <section id="about">
+      <div class="grid">
+        <div class="card" style="padding:18px">
+          <h2 class="section-title">關於學會</h2>
+          <p class="p">
+            台灣人工智慧發展學會（TIAI）致力於推動人工智慧相關教育、研討活動與產業交流，
+            並透過公開活動與分享，促進更多人了解 AI 應用與發展趨勢。
+          </p>
+          <ul class="list">
+            <li class="li"><b>定位</b> 科學、技術與工程類型的推廣與交流平台</li>
+            <li class="li"><b>內容</b> 研討會 / 師資營 / 課程資訊 / 活動紀錄（以粉專貼文為主）</li>
+            <li class="li"><b>入口</b> 以粉專為最新公告主平台，官網作為報名與資訊整合</li>
+          </ul>
+        </div>
+
+        <!-- ✅ 不用 fb-page（避免 file:// 空白），改成「按鈕直達」+ 提示 -->
+        <div class="card fbbox">
+          <h2 class="section-title" style="margin:8px 8px 12px">Facebook 粉專入口</h2>
+          <p class="p">
+            本頁提供 Facebook 內容整合入口：你可點右上角「貼文」查看指定文章，
+            或直接前往粉專瀏覽最新動態。
+          </p>
+          <div class="cta" style="margin-top:12px">
+            <a class="btn primary" href="https://www.facebook.com/tiai201810/" target="_blank" rel="noopener">
+              前往 Facebook 粉專（Timeline）
+            </a>
+            <button class="btn" type="button" onclick="openPost()">在本頁查看貼文</button>
+          </div>
+          <p class="p" style="margin-top:10px;font-size:13px">
+            ※ 若瀏覽器有開啟阻擋追蹤/廣告外掛，Facebook 內容可能無法顯示，請改用上方連結直接查看。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="news">
+      <div class="card" style="padding:18px">
+        <h2 class="section-title">最新動態</h2>
+        <p class="p">
+          最新公告與活動資訊以粉專貼文為主，你也可以把「報名連結、課程連結」放在這裡做快速入口。
+        </p>
+        <ul class="list">
+          <li class="li">
+            <b>📌 最新公告</b>
+            以 Facebook 粉專貼文為主（右上角「貼文」可快速查看指定文章）。
+          </li>
+          <li class="li">
+            <b>📝 報名/活動</b>
+            建議把官網報名頁、活動表單、簡章下載集中放這區。
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="grid">
+        <div class="card" style="padding:18px">
+          <h2 class="section-title">聯絡方式</h2>
+          <p class="p">有合作、活動、課程或社群推廣需求，可透過下列方式聯繫：</p>
+          <ul class="list">
+            <li class="li"><b>Email</b> <a href="mailto:tiai201810@gmail.com">tiai201810@gmail.com</a></li>
+            <li class="li"><b>地址</b> 新莊區中正路510號 輔仁大學羅耀拉大樓403室</li>
+            <li class="li"><b>官網</b> <a href="https://www.tiai.org.tw" target="_blank" rel="noopener">https://www.tiai.org.tw</a></li>
+            <li class="li"><b>Facebook</b> <a href="https://www.facebook.com/tiai201810/" target="_blank" rel="noopener">https://www.facebook.com/tiai201810/</a></li>
+          </ul>
+        </div>
+
+        
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap" style="padding:0">
+        © <span id="y"></span> 台灣人工智慧發展學會（TIAI）｜本頁為粉專資訊整合入口（非 Facebook 官方頁面）
+      </div>
+    </footer>
+  </main>
+
+  <!-- ✅ 彈出貼文視窗（改用 iframe，file:// 也能顯示） -->
+  <div class="post-overlay" id="postOverlay" onclick="overlayClickClose(event)">
+    <div class="post-modal" role="dialog" aria-modal="true" aria-label="Facebook 貼文">
+      <div class="post-modal-head">
+        <h3 class="post-modal-title">Facebook 文章</h3>
+        <div class="post-close" onclick="closePost()" aria-label="關閉">✕</div>
+      </div>
+      <div class="post-modal-body">
+        <p class="hint">點灰色背景或右上角 ✕ 可關閉。</p>
+
+        <div class="embed-wrap" id="postEmbedWrap">
+
+          <!-- ✅ 第 1 篇（iframe 插件） -->
+          <iframe class="fb-iframe"
+            src="https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/photo.php?fbid=971866704728236&set=a.564564862125091&show_text=true&width=780"
+            height="650"
+            scrolling="no"
+            frameborder="0"
+            allowfullscreen="true"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+          </iframe>
+
+          <div class="iframe-sep"></div>
+
+          <!-- ✅ 第 2 篇（iframe 插件） -->
+          <iframe class="fb-iframe"
+            src="https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/photo.php?fbid=771072681474307&set=a.564564862125091&show_text=true&width=780"
+            height="650"
+            scrolling="no"
+            frameborder="0"
+            allowfullscreen="true"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+          </iframe>
+
+          <p class="fb-fallback">
+            若 iframe 仍無法顯示，請直接點：
+            <a href="https://www.facebook.com/photo?fbid=971866704728236&set=a.564564862125091" target="_blank" rel="noopener">第 1 篇</a> /
+            <a href="https://www.facebook.com/photo?fbid=771072681474307&set=a.564564862125091" target="_blank" rel="noopener">第 2 篇</a>
+          </p>
+		  
+		  <!-- ✅ 第 3 篇（iframe 插件） -->
+          <iframe class="fb-iframe"
+            src="https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/photo.php?fbid=680651877183055&set=a.564564862125091&show_text=true&width=780"
+            height="650"
+            scrolling="no"
+            frameborder="0"
+            allowfullscreen="true"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+          </iframe>
+
+          <p class="fb-fallback">
+            若 iframe 仍無法顯示，請直接點：
+            <a href="https://www.facebook.com/photo?fbid=971866704728236&set=a.564564862125091" target="_blank" rel="noopener">第 1 篇</a> /
+            <a href="https://www.facebook.com/photo?fbid=771072681474307&set=a.564564862125091" target="_blank" rel="noopener">第 2 篇</a> /
+			<a href="https://www.facebook.com/photo?fbid=680651877183055&set=a.564564862125091" target="_blank" rel="noopener">第 3 篇</a> 
+          </p>
+		    
+			<!-- ✅ 第 4 篇（iframe 插件） -->
+          <iframe class="fb-iframe"
+            src="https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/photo.php?fbid=576188160962761&set=a.564564862125091&show_text=true&width=780"
+            height="650"
+            scrolling="no"
+            frameborder="0"
+            allowfullscreen="true"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+          </iframe>
+
+          <p class="fb-fallback">
+            若 iframe 仍無法顯示，請直接點：
+            <a href="https://www.facebook.com/photo?fbid=971866704728236&set=a.564564862125091" target="_blank" rel="noopener">第 1 篇</a> /
+            <a href="https://www.facebook.com/photo?fbid=771072681474307&set=a.564564862125091" target="_blank" rel="noopener">第 2 篇</a> /
+			<a href="https://www.facebook.com/photo?fbid=680651877183055&set=a.564564862125091" target="_blank" rel="noopener">第 3 篇</a> /
+			<a href="https://www.facebook.com/photo?fbid=576188160962761&set=a.564564862125091" target="_blank" rel="noopener">第 4 篇</a> 
+          </p>
+		  
+		  <!-- ✅ 第 4 篇（iframe 插件） -->
+          <iframe class="fb-iframe"
+            src="https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/photo.php?fbid=1116575639203501&set=a.564564862125091&show_text=true&width=780"
+            height="650"
+            scrolling="no"
+            frameborder="0"
+            allowfullscreen="true"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+          </iframe>
+
+          <p class="fb-fallback">
+            若 iframe 仍無法顯示，請直接點：
+            <a href="https://www.facebook.com/photo?fbid=971866704728236&set=a.564564862125091" target="_blank" rel="noopener">第 1 篇</a> /
+            <a href="https://www.facebook.com/photo?fbid=771072681474307&set=a.564564862125091" target="_blank" rel="noopener">第 2 篇</a> /
+			<a href="https://www.facebook.com/photo?fbid=680651877183055&set=a.564564862125091" target="_blank" rel="noopener">第 3 篇</a> /
+			<a href="https://www.facebook.com/photo?fbid=576188160962761&set=a.564564862125091" target="_blank" rel="noopener">第 4 篇</a> /
+			<a href="https://www.facebook.com/photo?fbid=1116575639203501&set=a.564564862125091" target="_blank" rel="noopener">第 5 篇</a> 
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    function openPost(){
+      document.getElementById('postOverlay').classList.add('active');
+    }
+    function closePost(){
+      document.getElementById('postOverlay').classList.remove('active');
+    }
+    function overlayClickClose(e){
+      if (e.target && e.target.id === 'postOverlay') closePost();
+    }
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') closePost();
+    });
+  </script>
+</body>
+</html>
